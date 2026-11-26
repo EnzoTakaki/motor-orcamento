@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* Variante dark controlada pela classe .dark no <html> (o toggle e o tema do sistema escrevem nela) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tokens de cor: modo claro no :root, modo escuro em .dark */
+:root {
+  --bg: #f6f8fa;
+  --surface: #ffffff;
+  --field: #f6f8fa;
+  --line: #d0d7de;
+  --fg: #1f2328;
+  --muted: #6e7781;
+  --accent: #0284c7;
+  --accent-strong: #0369a1;
+  --success: #059669;
+  --danger: #dc2626;
+  --amber: #f59e0b;
+  color-scheme: light;
+}
+.dark {
+  --bg: #121214;
+  --surface: #1a1a1e;
+  --field: #121214;
+  --line: #2d2d32;
+  --fg: #f4f4f5;
+  --muted: #a1a1aa;
+  --accent: #0ea5e9;
+  --accent-strong: #0284c7;
+  --success: #10b981;
+  --danger: #f87171;
+  --amber: #f59e0b;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-field: var(--field);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-amber: var(--amber);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+html { background: var(--bg); }
+body { background: var(--bg); color: var(--fg); }
+
+/* Evita o "flash" de transições de cor ao trocar de tema */
+.no-transition * { transition: none !important; }
+
+::selection { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+
+/* Barra de rolagem discreta para áreas com overflow horizontal */
+.scroll-fino { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
